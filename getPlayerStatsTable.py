@@ -8,6 +8,8 @@ from getAwardsVotingTable import *
 # Function that scrapes any NBA Player Stats table from any year and type
 def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
     stat_type_list = ['totals', 'per_game', 'per_minute', 'per_poss', 'advanced', 'play-by-play', 'shooting', 'adj_shooting']
+    stat_type_names = ['Player Totals', 'Player Per Game', 'Player Per 36 Min', 'Player Per 100 Poss', 'Player Advanced', 'Player Play-by-Play', 'Player Shooting', 'Player Adjusted Shooting']
+    stat_type_dict = dict(zip(stat_type_list, stat_type_names))
 
     if stat_type not in stat_type_list:
         raise NameError(stat_type+' is not a valid stat type.')
@@ -81,12 +83,14 @@ def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
         row_data = []
         for cell in row.find_all('td'):
 
-            # Append playerId if found
+            cell_text = cell.getText()
+
+            # Insert playerId in first column if found
             player_id = cell.get('data-append-csv')
             if (player_id != None):
                 row_data.insert(0,player_id)
 
-            row_data.append(cell.getText())
+            row_data.append(cell_text)
 
         data.append(row_data)
 
@@ -102,7 +106,7 @@ def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
         data_df = data_df_keep_first
         data_df['Team'] = data_df_keep_last['Team']
 
-    headers = [stat_type + ', ' + s for s in headers]
+    headers = [stat_type_dict[stat_type] + ', ' + s for s in headers]
     headers[0] = 'playerId'
     data_df.columns = headers
 
@@ -111,11 +115,11 @@ def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
     return data_df
 
 def getFullPlayerStats(year):
-    stat_type_list = ['totals', 'per_game', 'per_minute', 'per_poss', 'advanced', 'play-by-play', 'shooting', 'adj_shooting']
+    stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced', 'play-by-play', 'shooting', 'adj_shooting']
     allPlayerStats = []
     for i in range(0,len(stat_type_list)):
         allPlayerStats.append(getPlayerStatsTable(year,stat_type_list[i]))
 
     allPlayerStats.append(getAwardsVotingTable(year,'mvp'))
-    
+
     return allPlayerStats

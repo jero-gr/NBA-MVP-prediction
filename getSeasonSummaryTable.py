@@ -6,6 +6,8 @@ import pandas as pd
 # Function that scrapes any NBA Season Summary table from any year and stat type
 def getSeasonSummaryTable(year,stat_type,team='team'):
     stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced', 'shooting']
+    stat_type_names = ['Team Per Game', 'Team Totals', 'Team Per 100 Poss', 'Team Advanced', 'Team Shooting']
+    stat_type_dict = dict(zip(stat_type_list, stat_type_names))
 
     if stat_type not in stat_type_list:
         raise NameError(stat_type+' is not a valid stat type.')
@@ -102,7 +104,7 @@ def getSeasonSummaryTable(year,stat_type,team='team'):
     data_df = data_df.set_index('Team')
 
     headers = data_df.columns
-    headers = [stat_type + ', ' + s for s in headers]
+    headers = [stat_type_dict[stat_type] + ', ' + s for s in headers]
     data_df.columns = headers
 
     # Return dataframe

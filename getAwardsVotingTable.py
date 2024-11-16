@@ -7,6 +7,8 @@ import pandas as pd
 
 def getAwardsVotingTable(year,award):
     award_list = ['mvp','roy','dpoy','smoy','mip','clutch_poy','leading_all_nba','leading_all_defense','leading_all_rookie','coy']
+    award_names = ['MVP', 'ROY', 'DPOY', '6MOY','MIP','Clutch POY','All-NBA','All-Defense','All-Rookie','COY']
+    award_dict = dict(zip(award_list, award_names))
 
     if award not in award_list:
         raise NameError(award+' is not a valid award type.')
@@ -84,7 +86,7 @@ def getAwardsVotingTable(year,award):
     data_df = pd.DataFrame(data)
     data_df.columns = headers
 
-    headers = [award + ', ' + s for s in headers]
+    headers = [award_dict[award] + ', ' + s for s in headers]
     headers[0] = 'playerId'
     data_df.columns = headers
 
