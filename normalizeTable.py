@@ -15,4 +15,7 @@ def normalizeTable(df,type='max'):
         scaler = MinMaxScaler()
         df_normalized = pd.DataFrame(scaler.fit_transform(df), columns=df.columns,index=df.index)
 
+    if(type == 'sum'):
+        df_normalized = df / df.sum()
+
     return df_normalized

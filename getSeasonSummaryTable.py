@@ -112,6 +112,8 @@ def getSeasonSummaryTable(year,stat_type,team='team'):
 
 def getFullSeasonSummary(year):
     team_stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced', 'shooting']
+    if (year<1997):
+        team_stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced']
     allSeasonSummary = []
     for i in range(0,len(team_stat_type_list)):
         allSeasonSummary.append(getSeasonSummaryTable(year,team_stat_type_list[i]))

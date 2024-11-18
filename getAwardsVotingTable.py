@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-# Function that scrapes any NBA Awards table from any year and award
+# Function that scrapes any NBA Awards table from any year for any award
 
 def getAwardsVotingTable(year,award):
     award_list = ['mvp','roy','dpoy','smoy','mip','clutch_poy','leading_all_nba','leading_all_defense','leading_all_rookie','coy']
@@ -56,6 +56,7 @@ def getAwardsVotingTable(year,award):
     headers[-1][0] = 'playerId'
 
     # Correct headers if there's an overheader (2 rows in headers list)
+    # Make headers a single row list
     if (len(headers)>1):
         tuples = list(zip(*headers))
         for i in range(0,len(tuples)):

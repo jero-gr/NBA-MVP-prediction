@@ -53,7 +53,8 @@ def filterPlayerColumns(df):
                             'Player Play-by-Play, Fouls Drawn, Off.', 'Player Play-by-Play, Misc., PGA',
                             'Player Play-by-Play, Misc., And1', 'Player Play-by-Play, Misc., Blkd']'''
     
-    colsPlayerPlayByPlay = [ 'Player Play-by-Play, +/- Per 100 Poss., OnCourt', 'Player Play-by-Play, +/- Per 100 Poss., On-Off']
+    '''colsPlayerPlayByPlay = [ 'Player Play-by-Play, +/- Per 100 Poss., OnCourt', 'Player Play-by-Play, +/- Per 100 Poss., On-Off']'''
+    colsPlayerPlayByPlay = []
 
     '''colsPlayerShooting = ['Player Shooting, Dist.', 'Player Shooting, % of FGA by Distance, 0-3',
                         'Player Shooting, % of FGA by Distance, 3-10', 'Player Shooting, % of FGA by Distance, 10-16',
@@ -65,14 +66,16 @@ def filterPlayerColumns(df):
                         'Player Shooting, Corner 3s, %3PA', 'Player Shooting, Corner 3s, 3P%',
                         'Player Shooting, Heaves, Att.', 'Player Shooting, Heaves, #']'''
     
-    colsPlayerShooting = ['Player Shooting, Dist.', 'Player Shooting, % of FGA by Distance, 0-3',
+    '''colsPlayerShooting = ['Player Shooting, Dist.', 'Player Shooting, % of FGA by Distance, 0-3',
                         'Player Shooting, % of FGA by Distance, 3-10', 'Player Shooting, % of FGA by Distance, 10-16',
                         'Player Shooting, % of FGA by Distance, 16-3P', 'Player Shooting, % of FGA by Distance, 3P',
                         'Player Shooting, FG% by Distance, 0-3', 'Player Shooting, FG% by Distance, 3-10',
                         'Player Shooting, FG% by Distance, 10-16', 'Player Shooting, FG% by Distance, 16-3P',
                         'Player Shooting, FG% by Distance, 3P', "Player Shooting, % of FG Ast'd, 2P",
                         "Player Shooting, % of FG Ast'd, 3P", 'Player Shooting, Dunks, %FGA', 'Player Shooting, Dunks, #',
-                        'Player Shooting, Corner 3s, %3PA', 'Player Shooting, Corner 3s, 3P%']
+                        'Player Shooting, Corner 3s, %3PA', 'Player Shooting, Corner 3s, 3P%']'''
+    
+    colsPlayerShooting = []
 
     colsPlayerAdjShooting = ['Player Adjusted Shooting, Player Shooting %, TS',
                             'Player Adjusted Shooting, Player Shooting %, FTr',
@@ -80,7 +83,7 @@ def filterPlayerColumns(df):
                             'Player Adjusted Shooting, FG Add',
                             'Player Adjusted Shooting, TS Add']
 
-    colsPlayerMVP = ['MVP, Voting, Share']
+    colsPlayerMVP = ['MVP, Voting, First', 'MVP, Voting, Share']
 
     cols_player = list(itertools.chain(colsPlayerPerGame, colsPlayerTotals, colsPlayerPer100Poss, colsPlayerAdvanced,
                                        colsPlayerPlayByPlay, colsPlayerShooting, colsPlayerAdjShooting, colsPlayerMVP))
@@ -90,7 +93,7 @@ def filterPlayerColumns(df):
 def filterTeamColumns(df):
     # For team stats
     index_team = 'Team'
-    cols_team = ['Team Advanced, W', 'Team Advanced, L', 'Team Advanced, MOV', 'Team Advanced, SOS', 'Team Advanced, SRS', 
-                'Team Advanced, ORtg', 'Team Advanced, DRtg', 'Team Advanced, NRtg']
+    cols_team = ['Team Advanced, W', 'Team Advanced, L', 'Team Advanced, MOV', 'Team Advanced, SOS', 
+                'Team Advanced, ORtg', 'Team Advanced, DRtg']
     return(df[cols_team])
     

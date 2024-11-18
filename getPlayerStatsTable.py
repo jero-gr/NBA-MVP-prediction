@@ -24,7 +24,6 @@ def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
     req_status = req.status_code
 
     # Use beautiful soup to organize the HTML into a data structure that is workable for Python
-    
     if (stat_type == 'adj_shooting'):
         table_src = req.text.split('<div class="table_container" id="div_adj-shooting">')[1].split('</table>')[0] + '</table>'
         soup = BeautifulSoup(table_src, 'html.parser')
@@ -116,6 +115,8 @@ def getPlayerStatsTable(year,stat_type,drop_duplicates=True):
 
 def getFullPlayerStats(year):
     stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced', 'play-by-play', 'shooting', 'adj_shooting']
+    if (year<1997):
+        stat_type_list = ['per_game', 'totals', 'per_poss', 'advanced', 'adj_shooting']
     allPlayerStats = []
     for i in range(0,len(stat_type_list)):
         allPlayerStats.append(getPlayerStatsTable(year,stat_type_list[i]))
