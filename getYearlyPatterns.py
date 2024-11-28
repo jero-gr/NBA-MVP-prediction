@@ -59,7 +59,7 @@ def getYearlyPatterns(year,n,criteria='MPG'):
 
     # Normalize columns and separate pattern input and output
     joinedStats_x = joinedStats.drop(columns=['MVP, Voting, First', 'MVP, Voting, Share'])
-    joinedStats_x = normalizeTable(joinedStats_x)    
+    joinedStats_x = normalizeTable(joinedStats_x) 
 
     joinedStats_y = joinedStats[['MVP, Voting, First', 'MVP, Voting, Share']].copy()
     joinedStats_y['MVP, Voting, First'] = normalizeTable(joinedStats_y['MVP, Voting, First'],'sum').values

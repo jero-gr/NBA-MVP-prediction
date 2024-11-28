@@ -41,6 +41,3 @@ def getPatternsIndexes(n,year_first,year_range):
         index_return = np.append(index_return,index)
 
     return index_return
-
-
-
